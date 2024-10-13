@@ -1,7 +1,6 @@
-from django.shortcuts import render
 from rest_framework import generics, permissions, authentication  # 汎用APIビュー、パーミッション、認証をインポート
 from api_user import serializers  # シリアライザーモジュールをインポート
-from core.models import User, Profile, FriendRequest  # 使用するモデルをインポート
+from core.models import  Profile, FriendRequest  # 使用するモデルをインポート
 from django.db.models import Q  # 複数の条件をフィルタリングするためのQオブジェクトをインポート
 from rest_framework import viewsets  # ViewSetを使うためのモジュール
 from rest_framework.response import Response  # APIレスポンスを返すためのモジュール
