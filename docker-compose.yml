@@ -1,0 +1,36 @@
+services:
+  web:
+    # webサービスのビルドに使用するディレクトリ
+    build: ./app_backend
+    # Django開発サーバーを0.0.0.0:8000で起動
+    command: python manage.py runserver 0.0.0.0:8000
+    # ホスト側のプロジェクトディレクトリをコンテナ内にマウント
+    volumes:
+      - ./app_backend/:/usr/src/app_backend/
+    # ホストの8000番ポートをコンテナの8000番ポートにマッピング
+    ports:
+      - 8000:8000
+    # 環境変数ファイルを指定 (.env.dev)
+    env_file:
+      - ./.env.dev
+    # webサービスを起動する前にdbサービスが起動していることを確認
+    depends_on:
+      - db
+
+  db:
+    # PostgreSQLのイメージを指定
+    image: postgres:15
+    # データベースのデータを永続化するためのボリュームを設定
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    # PostgreSQLの環境変数を設定
+    environment:
+      - POSTGRES_USER=postgresuser
+      - POSTGRES_PASSWORD=postgrespassword
+      - POSTGRES_DB=app
+    ports:
+      - 5432:5432
+
+# データを永続化するためのボリュームを定義
+volumes:
+  postgres_data:
