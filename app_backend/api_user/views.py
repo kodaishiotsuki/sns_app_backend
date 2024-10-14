@@ -52,13 +52,13 @@ class FriendRequestViewSet(viewsets.ModelViewSet):
         response = {'message': 'Delete is not allowed'}  # 削除は許可されていない旨のメッセージを返す
         return Response(response, status=status.HTTP_400_BAD_REQUEST)  # 400エラー（不正リクエスト）を返す
 
-    # 友達リクエストの部分更新（PATCH）は許可しない
-    def update(self, request, *args, **kwargs):
-        """
-        友達リクエストの更新を拒否する。
-        """
-        response = {'message': 'Patch is not allowed'}  # 更新は許可されていない旨のメッセージを返す
-        return Response(response, status=status.HTTP_400_BAD_REQUEST)  # 400エラー（不正リクエスト）を返す
+    # # 友達リクエストの部分更新（PATCH）は許可しない
+    # def update(self, request, *args, **kwargs):
+    #     """
+    #     友達リクエストの更新を拒否する。
+    #     """
+    #     response = {'message': 'Patch is not allowed'}  # 更新は許可されていない旨のメッセージを返す
+    #     return Response(response, status=status.HTTP_400_BAD_REQUEST)  # 400エラー（不正リクエスト）を返す
 
 # プロフィールを管理するViewSet
 class ProfileViewSet(viewsets.ModelViewSet):
